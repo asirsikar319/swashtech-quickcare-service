@@ -21,7 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			Document document = Document.parse(jInput.toString());
-			mongoTemplate.save(document, "customer");
+			document = mongoTemplate.save(document, "customer");
+			logger.debug(document.toJson());
 			jsonObject.put("status", "Success");
 		} catch (Exception e) {
 			jsonObject.put("status", "Error");
